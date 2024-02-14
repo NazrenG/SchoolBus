@@ -182,7 +182,7 @@
                 <StackPanel Orientation="Horizontal">
                     <DataGrid Width="500" HorizontalAlignment="Left" ItemsSource="{Binding RouteList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Title" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Title                                                                                                                              " Binding="{Binding Name}" />
                            
                         </DataGrid.Columns>
                     </DataGrid>
