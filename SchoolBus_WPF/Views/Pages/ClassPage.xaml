@@ -1,0 +1,217 @@
+﻿<Page x:Class="SchoolBus_WPF.Views.Pages.ClassPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SchoolBus_WPF.Views.Pages"
+      xmlns:design="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" x:Name="class"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClassPage">
+
+
+
+    <Page.Resources>
+        <Style x:Key="CustomTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    />
+                            <Border x:Name="borderLine" BorderBrush="#F48D2E" BorderThickness="0,0,0,2" />
+                            <ScrollViewer x:Name="PART_ContentHost" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="borderLine" Property="BorderBrush" Value="#F48D2E" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CustomButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CustomGroupBoxStyle" TargetType="GroupBox">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="BorderBrush" Value="#F48D2E" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CustomBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="#F48D2E" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="HorizontalAlignment" Value="left" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#F48D2E" />
+                    <Setter Property="BorderThickness" Value="1" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Page.Resources>
+
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="133*"/>
+            <ColumnDefinition Width="422*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="#2B2D4F">
+            <!-- Logo and Header -->
+            <StackPanel Orientation="Horizontal" >
+                <Button Background="Transparent" Width="50" BorderBrush="Transparent" Command="{Binding LogOut}" CommandParameter="{Binding ElementName=class}">
+                    <design:PackIcon Kind="Logout" Foreground="WhiteSmoke" 
+                             Width="20" Height="20" />
+                </Button>
+                <Label Content="SchoolBus" Foreground="WhiteSmoke" FontSize="14" FontWeight="Bold"
+                   Height="25"  Width="222" VerticalAlignment="Top"  />
+            </StackPanel>
+            <Image  Source="pack://application:,,,/StaticFields/School1.png" Width="100" Height="100" HorizontalAlignment="Left" Margin="10 0" />
+
+            <!-- Menu Items -->
+            <Border Style="{StaticResource CustomBorderStyle}" >
+                <StackPanel  Orientation="Horizontal" Margin="10 10 0 5">
+                    <design:PackIcon Kind="Road" Foreground="WhiteSmoke" 
+                             Width="23" Height="23"/>
+                    <Button Content="Create Ride" Style="{StaticResource CustomButtonStyle}" FontWeight="Bold"  
+                            Command="{Binding CreateRide}" CommandParameter="{Binding ElementName=class}"/>
+
+                </StackPanel>
+            </Border>
+
+            <!--Routes-->
+            <Border Style="{StaticResource CustomBorderStyle}" >
+                <StackPanel  Orientation="Horizontal" Margin="10 5 0 5">
+                    <design:PackIcon Kind="Roadmap" Foreground="WhiteSmoke" 
+                             Width="23" Height="23"/>
+                    <Button Name="user_btn" Content="Routes" Style="{StaticResource CustomButtonStyle}" FontWeight="Bold" 
+                        Command="{Binding Routes}" CommandParameter="{Binding ElementName=class}"
+                        />
+                </StackPanel>
+            </Border>
+
+            <!--Class-->
+            <Border Style="{StaticResource CustomBorderStyle}" BorderThickness="1" >
+                <StackPanel  Orientation="Horizontal" Margin="0 5 0 0">
+                    <design:PackIcon Kind="Class"  Foreground="WhiteSmoke" 
+                             Width="23" Height="23" />
+                    <Button Style="{StaticResource CustomButtonStyle}" FontWeight="Bold"  Content="Class" />
+
+                </StackPanel>
+            </Border>
+
+            <!--Student-->
+            <Border Style="{StaticResource CustomBorderStyle}">
+                <StackPanel Orientation="Horizontal" Margin="10 5 0 0">
+                    <design:PackIcon Kind="AccountGroup"  Foreground="WhiteSmoke" 
+                             Width="23" Height="23" />
+                    <Button Style="{StaticResource CustomButtonStyle}" FontWeight="Bold"  Content="Student" 
+                                    Command="{Binding Student}"
+                                    CommandParameter="{Binding ElementName=class}"/>
+                </StackPanel>
+            </Border>
+
+            <!--Parent-->
+            <Border Style="{StaticResource CustomBorderStyle}">
+                <StackPanel Orientation="Horizontal" Margin="10 5 0 0">
+                    <design:PackIcon Kind="People"  Foreground="WhiteSmoke" 
+                             Width="23" Height="23" />
+                    <Button Style="{StaticResource CustomButtonStyle}" FontWeight="Bold"  Content="Parent"
+                                    Command="{Binding Parent}" CommandParameter="{Binding ElementName=class}"/>
+
+                </StackPanel>
+            </Border>
+
+            <!--Drivers-->
+            <Border Style="{StaticResource CustomBorderStyle}" >
+                <StackPanel Orientation="Horizontal" Margin="10 5 0 0">
+                    <design:PackIcon Kind="PeopleOutline"  Foreground="WhiteSmoke" 
+                             Width="23" Height="23" />
+                    <Button Style="{StaticResource CustomButtonStyle}" FontWeight="Bold"  Content="Drivers" 
+                                    Command="{Binding Drivers}" CommandParameter="{Binding ElementName=class}" />
+                </StackPanel>
+            </Border>
+
+            <!--Bus-->
+            <Border Style="{StaticResource CustomBorderStyle}">
+                <StackPanel Orientation="Horizontal" Margin="10 5 0 0">
+                    <design:PackIcon Kind="Bus"  Foreground="WhiteSmoke" 
+                             Width="23" Height="23" />
+                    <Button Style="{StaticResource CustomButtonStyle}" FontWeight="Bold"  Content="Bus" 
+                                  Command="{Binding Bus}" CommandParameter="{Binding ElementName=class}"/>
+                </StackPanel>
+            </Border>
+
+
+        </StackPanel>
+
+
+        <!-- GridVieww-->
+
+        <StackPanel Margin="0,10,0,0" Grid.Column="1">
+             
+            <!--             -->
+            <!-- Fields -->
+            <ScrollViewer Grid.Column="1" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal">
+                    <DataGrid x:Name="dataGridView1" Width="500" HorizontalAlignment="Left" ItemsSource="{Binding ClassList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                       
+
+                    </DataGrid>
+                    <StackPanel  HorizontalAlignment="Right">
+                        <TextBox HorizontalAlignment="Center" Text="Action" BorderBrush="Transparent"/>
+                        <Button Margin="0 10"  BorderBrush="#F48D2E" Background="Transparent" Foreground="#F48D2E"  Content="Update" Command="{Binding Update}" CommandParameter="{Binding ElementName=class}"/>
+                        <Button Margin="0 5" BorderBrush="#F48D2E" Background="Transparent" Foreground="#F48D2E"  Content="Remove" Command="{Binding Remove}" CommandParameter="{Binding ElementName=class}"/>
+                        <Button Margin="0 5"  BorderBrush="#F48D2E" Background="Transparent" Foreground="#F48D2E"   Content="Refresh" Command="{Binding Refresh}" CommandParameter="{Binding ElementName=class}"/>
+                        <Button Margin="0 5"  BorderBrush="#F48D2E" Background="Transparent" Foreground="#F48D2E"   Content="Create" Command="{Binding Create}" CommandParameter="{Binding ElementName=class}"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+
+</Page>
