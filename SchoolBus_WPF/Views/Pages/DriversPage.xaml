@@ -198,7 +198,7 @@
             <!-- Fields -->
             <ScrollViewer Grid.Column="1" Margin="0,0,0,10">
                 <StackPanel Orientation="Horizontal">
-                    <DataGrid Width="500" HorizontalAlignment="Left" ItemsSource="{Binding DriverList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                    <DataGrid Width="515" HorizontalAlignment="Left" ItemsSource="{Binding DriverList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Firstname" Binding="{Binding Name}" />
                             <DataGridTextColumn Header="Lastname" Binding="{Binding LastName}" />
